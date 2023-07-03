@@ -1,14 +1,15 @@
 <template>
   <div>
     <!-- アプリのUIコンポーネント -->
-    <h1>財務会計アプリ</h1>
-    <p>残高: {{ balance }}</p>
+    <h1 style="color:#00F">財務会計アプリ</h1>
+    <p style="color:#0FF">残高 </p>
+    <p>{{ balance }}</p>
     <input type="number" v-model="transactionAmount" placeholder="金額を入力してください">
     <button @click="addTransaction">入金</button>
     <button @click="withdrawTransaction">引き出し</button>
 
     <!-- 履歴 -->
-    <h2>履歴</h2>
+    <h2 style="color:#0FF">履歴</h2>
     <ul>
       <li v-for="transaction in transactionHistory" :key="transaction.id">
         {{ transaction.description }} - {{ transaction.amount }}

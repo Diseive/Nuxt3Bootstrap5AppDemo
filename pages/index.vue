@@ -1,51 +1,56 @@
 <template>
   <div>
     <!-- ナビゲーションバー -->
-    <nav>
-      <ul>
-        <li><a href="#">財務会計アプリ</a></li>
+    <nav class="bg-dark text-white">
+      <ul class="list-inline">
+        <li class="list-inline-item"><nuxt-link to="/">財務会計アプリ</nuxt-link></li>
+        <li class="list-inline-item"><nuxt-link to="/ImagePage">複数ページ</nuxt-link></li>
       </ul>
     </nav>
 
     <!-- アプリのUIコンポーネント -->
-    <p style="color:#0FF">残高 </p>
-    <p>{{ balance }}</p>
-    <input type="number" v-model="transactionAmount" placeholder="金額を入力してください" />
-    <button @click="addTransaction">入金</button>
-    <button @click="withdrawTransaction">引き出し</button>
+    <p class="text-primary">残高</p>
+    <p>{{ state.balance }}</p>
+    <input type="number" v-model="state.transactionAmount" placeholder="金額を入力してください" class="form-control mt-2" />
+    <button @click="addTransaction" class="btn btn-primary mt-2">入金</button>
+    <button @click="withdrawTransaction" class="btn btn-primary mt-2">引き出し</button>
 
     <!-- 履歴 -->
-    <h2 style="color:#0FF">履歴</h2>
+    <h2 class="text-primary mt-2">履歴</h2>
     <ul>
-      <li v-for="transaction in transactionHistory" :key="transaction.id">
+      <li v-for="transaction in state.transactionHistory" :key="transaction.id">
         {{ transaction.description }} - {{ transaction.amount }}
       </li>
     </ul>
+    <nuxt-link to="/ImagePage">次へ</nuxt-link>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { reactive } from 'vue';
+import ImagePage from './ImagePage.vue';
 
-const balance = ref(0);
-const transactionAmount = ref(0);
-const transactionHistory = ref([]);
+const state = reactive({
+  balance: 0,
+  transactionAmount: 0,
+  transactionHistory: [],
+});
 
 const addTransaction = () => {
   // 入金処理
   const transaction = {
     id: Date.now(),
     description: '入金',
-    amount: transactionAmount.value,
+    amount: state.transactionAmount,
   };
-  transactionHistory.value.push(transaction);
-  balance.value += transactionAmount.value;
-  transactionAmount.value = 0;
+  state.transactionHistory.push(transaction);
+  state.balance += state.transactionAmount;
+  state.transactionAmount = 0;
 };
 
 const withdrawTransaction = () => {
   // 引き出し処理
-  if (transactionAmount.value > balance.value) {
+  if (state.transactionAmount > state.balance) {
     alert('残高が不足しています');
     return;
   }
@@ -53,33 +58,10 @@ const withdrawTransaction = () => {
   const transaction = {
     id: Date.now(),
     description: '引き出し',
-    amount: -transactionAmount.value, // 引き出しは負の値として表現する
+    amount: -state.transactionAmount, // 引き出しは負の値として表現する
   };
-  transactionHistory.value.push(transaction);
-  balance.value -= transactionAmount.value;
-  transactionAmount.value = 0;
+  state.transactionHistory.push(transaction);
+  state.balance -= state.transactionAmount;
+  state.transactionAmount = 0;
 };
 </script>
-
-<style>
-nav {
-  background-color: #333;
-  color: #fff;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  padding: 0;
-}
-
-nav ul li {
-  margin: 10px;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-</style>

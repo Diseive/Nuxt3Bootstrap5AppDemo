@@ -11,7 +11,7 @@
 
     <!-- 画像を表示する -->
     <h1>なにもないよ</h1>
-    <img src="https://image.itmedia.co.jp/nl/articles/1705/03/l_enjin_170502mameshiba01.jpg" alt="Image" />
+    <img src="~/assets/l_enjin_170502mameshiba01.png" alt="Discover Nuxt 3" />
     <!-- 戻るリンク -->
     <nuxt-link to="/">戻る</nuxt-link>
   </div>

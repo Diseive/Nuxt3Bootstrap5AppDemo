@@ -3,8 +3,8 @@
     <!-- ナビゲーションバー -->
     <nav class="bg-dark text-white">
       <ul class="list-inline">
-        <li class="list-inline-item"><nuxt-link to="/">財務会計アプリ</nuxt-link></li>
-        <li class="list-inline-item"><nuxt-link to="/ImagePage">複数ページ</nuxt-link></li>
+        <li class="list-inline-item"><Nuxt-link to="/">財務会計アプリ</nuxt-link></li>
+        <li class="list-inline-item"><Nuxt-link to="/ImagePage">複数ページ</nuxt-link></li>
       </ul>
     </nav>
 
@@ -22,7 +22,7 @@
         {{ transaction.description }} - {{ transaction.amount }}
       </li>
     </ul>
-    <nuxt-link to="/ImagePage">次へ</nuxt-link>
+    <Nuxt-link to="/ImagePage">次へ</Nuxt-link>
   </div>
 </template>
 

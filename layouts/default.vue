@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <AppHeader />
-    <AppAside />
-    <slot />
-    <AppFooter />
-  </div>
+<div>
+    <Navbar />
+    <slot /> 
+      
+</div>
 </template>
 
+<script setup>
+definePageMeta({
+  layout: "sample",
+});
+</script>

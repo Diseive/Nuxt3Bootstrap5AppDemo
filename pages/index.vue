@@ -1,13 +1,5 @@
 <template>
   <div>
-    <!-- ナビゲーションバー -->
-    <nav class="bg-dark text-white">
-      <ul class="list-inline">
-        <li class="list-inline-item"><Nuxt-link to="/">財務会計アプリ</nuxt-link></li>
-        <li class="list-inline-item"><Nuxt-link to="/ImagePage">複数ページ</nuxt-link></li>
-      </ul>
-    </nav>
-
     <!-- アプリのUIコンポーネント -->
     <p class="text-primary">残高</p>
     <p>{{ state.balance }}</p>

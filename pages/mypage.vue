@@ -9,7 +9,6 @@
     <Nuxt-link to="/ImagePage">前へ</Nuxt-link>
 </template>
 <script setup>
-import { ref } from 'vue'
 
 const user =userInformation();
 </script>
